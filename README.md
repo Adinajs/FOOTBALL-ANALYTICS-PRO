@@ -1,76 +1,118 @@
-# Football Analytics Pro: Player Performance Prediction System
+# ⚽ Football Analytics Pro
 
-[cite_start]Football Analytics Pro is an end-to-end data science and machine learning pipeline that automates the predictive assessment of professional football players[cite: 454, 455]. [cite_start]Utilizing historical match data from the European Soccer Database, the platform cleans, structures, and processes multi-table relational inputs to train both regression and classification frameworks[cite: 455, 456, 457]. 
-
-[cite_start]The system maps precise continuous performance scores while grouping players into descriptive behavioral clusters (High, Medium, and Low tier execution thresholds) to replace subjective reporting models with mathematical insight[cite: 457, 463, 465]. [cite_start]The operational features are deployed to users via an interactive web dashboard[cite: 478].
+A machine learning–powered football player performance prediction system.  
+This project implements a complete ML pipeline to analyze historical European football data and predict player performance scores and classes (High, Medium, Low).  
 
 ---
 
-## 🚀 Key Features
-
-- [cite_start]**Dual Modeling Framework:** Executes concurrent regression pipelines to calculate detailed performance indices ($0-100$) alongside robust classification boundaries to segment players into dynamic target profiles[cite: 457, 481].
-- [cite_start]**Advanced Machine Learning Architectures:** Leverages high-performance ensemble trees, incorporating tuned **XGBoost**, **LightGBM**, and a generalized **Stacking Regressor**[cite: 488, 714, 724].
-- [cite_start]**Interactive Analytics Dashboard:** Formulated with Streamlit to enable scouts, managers, and analytical staff to query specific players, review comparative traits, plot physical projections, and measure workload distributions[cite: 478, 479, 480].
-- [cite_start]**Relational Data Optimization:** Resolves complex historical structural mismatches by executing strict time-aware backward joins (`pd.merge_asof`) across multiple databases[cite: 672, 676].
-- [cite_start]**Tailored PDF Reporting:** Compiles multi-tiered attribute scores, performance forecasts, and baseline biographical breakdowns into standard executive summary sheets downloadable instantly as PDFs[cite: 1344, 1368].
+## 📌 Project Overview
+- **Goal:** Predict football player performance using historical match, player, and team data.  
+- **Dataset:** European Soccer Database (Kaggle, 2008–2016).  
+- **Tech Stack:** Python, Pandas, NumPy, Scikit‑Learn, XGBoost, LightGBM, CatBoost, Streamlit.  
+- **Deployment:** Google Colab + Streamlit dashboard.  
 
 ---
 
 ## 🏗️ System Architecture
+### Frontend
+- Built with **Streamlit** for interactive dashboards.  
+- Features:
+  - Player selection and performance visualization.
+  - Predicted performance score (0–100).
+  - Classification into High/Medium/Low tiers.
+  - Interactive charts and comparison tools.
 
-[cite_start]The software setup separates platform operations into isolated backend engineering segments alongside human-accessible visualization frontends[cite: 475, 476]:
+### Backend
+- **Data Processing:** Pandas, NumPy.  
+- **ML Models:** Scikit‑Learn, XGBoost, LightGBM, CatBoost.  
+- **Balancing:** SMOTE (imblearn).  
+- **Persistence:** Pickle for saving trained models.  
 
-1. [cite_start]**User Presentation Layer (Streamlit Dashboard):** Coordinates individual athlete profiling, player head-to-head comparisons, contextual filtering, tactical team health monitors, and automated form tracking metrics[cite: 478, 480, 482].
-2. [cite_start]**Computational Logic & Backend Pipelines:** Standardized entirely in Python using foundational data frames (`pandas`, `numpy`)[cite: 486, 487, 488]. [cite_start]Mathematical operations utilize `scikit-learn`, `xgboost`, and `lightgbm` alongside `imblearn` modules to manage dataset alignment[cite: 488, 489].
-3. [cite_start]**Storage & GPU Infrastructure:** Hosted through cloud instances with integrated data mounts to isolate physical resource pipelines from file compilation zones[cite: 520, 521, 522].
-
----
-
-## 📊 Dataset Specifications
-
-- [cite_start]**Source Reference:** Kaggle European Soccer Database[cite: 536].
-- [cite_start]**Temporal Bound:** Extensive match records spanning historical metrics from 2008 to 2016[cite: 538].
-- **Data Shape Metrics:**
-  - [cite_start]`Match.csv`: $25,979$ instances across $115$ feature tracks[cite: 609].
-  - [cite_start]`Player.csv`: Biographical identities for $11,060$ individual professionals[cite: 610].
-  - [cite_start]`Player_Attributes.csv`: $183,978$ operational rows auditing physical/tactical variations[cite: 611].
-  - [cite_start]`Team.csv` & `Team_Attributes.csv`: Ground truth profiles for hundreds of unique club contexts[cite: 612, 613].
-
-### Engineered Metric Targets
-[cite_start]The project computes baseline attributes into composite metrics, including[cite: 619]:
-- [cite_start]Custom composite indices: `attacking_score`, `defensive_score`, `physical_score`, `technical_score`, `mental_score`[cite: 627].
-- [cite_start]Comprehensive rolling status: `recent_form_3`, `recent_form_5`, `recent_form_10`[cite: 635].
-- [cite_start]Collective comparative metrics: `strength_difference`, `match_difficulty`, `attack_x_team_strength`[cite: 633, 640].
+### Training Infrastructure
+- Developed in **Google Colab** with GPU/TPU acceleration.  
+- Integrated with Google Drive for dataset storage, models, and figures.  
 
 ---
 
-## 🔧 Preprocessing Checklist
+## 📊 Dataset
+- **Source:** [European Soccer Database – Kaggle](https://www.kaggle.com/datasets/hugomathien/soccer)  
+- **Tables Used:**
+  - `Match.csv` – Match outcomes, goals, season, stage.  
+  - `Player.csv` – Player identifiers and biographical data.  
+  - `Player_Attributes.csv` – Player skill ratings over time.  
+  - `Team.csv` – Team identifiers and names.  
+  - `Team_Attributes.csv` – Tactical and strength metrics.  
 
-- [cite_start]**Datetime Alignment:** Converts mismatched system timestamps to chronological pandas types before performing multi-table merges[cite: 643, 644].
-- [cite_start]**Relational Data Join:** Blends physical metrics into tactical team attributes through backward time-tolerant joins clamped strictly inside a $365$-day evaluation window[cite: 672, 676, 681].
-- [cite_start]**Missing Value Resolution:** Handles systemic column absence across key parameters via localized median imputation routines to avoid downstream operational failures[cite: 656, 658].
-- [cite_start]**Class Balancing:** Addresses target distribution patterns (such as heavily localized Medium class concentrations) through Synthetic Minority Over-sampling Techniques (**SMOTE**)[cite: 489, 740].
-- [cite_start]**Standard Scale Transforms:** Standardizes irregular scaling profiles using `StandardScaler` to normalize structural impacts during tree splits[cite: 667].
+---
+
+## 🔑 Features
+- **Player attributes:** rating, stamina, dribbling, finishing, sprint speed, etc.  
+- **Team attributes:** build‑up play, chance creation, defense metrics.  
+- **Match context:** goals, stage, home/away, difficulty.  
+- **Engineered features:** recent form, team strength index, weighted performance score.  
 
 ---
 
-## 📈 Evaluation & Performance Profiles
-
-[cite_start]Data splits use an un-biased $80/20$ division matrix across a working pool of $532,395$ historical matches[cite: 753, 756].
-
-### 1. Regression Framework Results (Performance Index Predictor)
-| Architecture Base | Mean Absolute Error (MAE) | Root Mean Squared Error (RMSE) | R-Squared ($R^2$) Score |
-| :--- | :---: | :---: | :---: |
-| **Stacking Ensemble (Best Regressor)** | **1.6739** | **2.2053** | [cite_start]**0.9731** | [cite: 730, 731]
-| XGBoost Regressor | 1.6804 | 2.2079 | [cite_start]0.9730 | [cite: 730]
-| LightGBM Regressor | 1.7521 | 2.2916 | [cite_start]0.9710 | [cite: 730]
-| Linear Regression Baseline | 3.9762 | 4.8389 | [cite_start]0.8705 | [cite: 730]
-
-### 2. Classification Framework Results (Performance Tier Identifier)
-| Classifier Variant | Test Accuracy Score | Precision Metrics | Recall Metrics | F1-Score |
-| :--- | :---: | :---: | :---: | :---: |
-| **XGBoost Classifier (Best Classifier)** | **93.80%** | **0.9392** | **0.9380** | [cite_start]**0.9384** | [cite: 746, 747]
-| Random Forest Classifier | 91.88% | 0.9276 | 0.9188 | [cite_start]0.9208 | [cite: 746]
-| Logistic Regression Baseline | 87.36% | 0.9016 | 0.8736 | [cite_start]0.8787 | [cite: 746]
+## 🧹 Data Preprocessing
+- Missing value imputation (median for numerical attributes).  
+- Duplicate removal.  
+- Feature scaling (StandardScaler).  
+- Encoding categorical variables.  
+- Relational joins across player, match, and team tables.  
 
 ---
+
+## 🤖 Models
+### Regression (Performance Score Prediction)
+- **Linear Regression (baseline):** R² = 0.87  
+- **XGBoost Regressor:** R² = 0.9730  
+- **LightGBM Regressor:** R² = 0.9710  
+- **Stacking Ensemble (best):** R² = 0.9731, MAE = 1.67  
+
+### Classification (Performance Tier Prediction)
+- **Logistic Regression (baseline):** Accuracy = 0.87  
+- **Random Forest Classifier:** Accuracy = 0.92  
+- **XGBoost Classifier (best):** Accuracy = 0.94, F1 = 0.94  
+
+---
+
+## 📈 Evaluation
+- Metrics: Accuracy, Precision, Recall, F1‑Score, R², MAE, RMSE.  
+- Confusion matrix and classification reports for model validation.  
+- Visual inspection with rating distributions, feature importance plots, and prediction trends.  
+
+---
+
+## 🚀 Dashboard Features
+- Player analytics (filter by rating, age, potential).  
+- Compare players head‑to‑head.  
+- Top performers ranking.  
+- Performance distribution visualization.  
+- AI predictor for future match performance.  
+
+---
+
+## ⚡ Challenges
+- Large dataset size (memory management in Colab).  
+- Missing attributes for some players.  
+- Complex relational joins.  
+- Feature selection experimentation.  
+- Overfitting mitigated with train‑test split and hyperparameter tuning.  
+
+---
+
+## 📚 References
+- [European Soccer Database – Kaggle](https://www.kaggle.com/datasets/hugomathien/soccer)  
+- [Scikit‑Learn Documentation](https://scikit-learn.org/stable/)  
+- [XGBoost Documentation](https://xgboost.readthedocs.io/en/stable/)  
+- [Pandas Documentation](https://pandas.pydata.org/docs/)  
+- [NumPy Documentation](https://numpy.org/doc/)  
+- [Google Colab](https://colab.research.google.com/)  
+
+---
+
+## 🛠️ How to Run
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/football-analytics-pro.git
+   cd football-analytics-pro
