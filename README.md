@@ -110,9 +110,3 @@ This project implements a complete ML pipeline to analyze historical European fo
 - [Google Colab](https://colab.research.google.com/)  
 
 ---
-
-## 🛠️ How to Run
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/football-analytics-pro.git
-   cd football-analytics-pro
